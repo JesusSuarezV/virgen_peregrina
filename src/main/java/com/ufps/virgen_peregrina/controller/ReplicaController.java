@@ -56,7 +56,7 @@ public class ReplicaController {
 
     }
 
-    @GetMapping("/{idReplica}/ed    itar")
+    @GetMapping("/{idReplica}/editar")
     public String editarReplica(@PathVariable int idReplica, Model model) {
         model.addAttribute("replica", replicaService.obtenerReplica(idReplica));
         return "gestion_replicas/editar";
