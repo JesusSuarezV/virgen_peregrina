@@ -92,11 +92,14 @@ public class UsuarioController {
             usuario.setEstado(1);
             token.setEstado(0);
             tokenService.guardarToken(token);
+            System.out.println("verificacion0");
             usuarioService.actualizarUsuario(usuario);
             System.out.println("verificacion1");
             return "redirect:/?exitoActivacion";
 
         } else {
+
+            System.out.println("verificacion2");
             return "redirect:/?errorToken";
         }
     }
