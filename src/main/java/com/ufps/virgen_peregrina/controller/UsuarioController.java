@@ -165,7 +165,7 @@ public class UsuarioController {
         } else return "redirect:/?errorToken";
     }
 
-    @PostMapping("/actualizar_clave/{codigo}")
+    @PostMapping("/actualizar/{codigo}")
     public String actualizarClave(@PathVariable String codigo, @RequestParam("clave") String clave) {
         Token token = tokenService.obtenerToken(codigo);
         usuarioService.cambiarContraseña(token.getUsuario(), clave);
