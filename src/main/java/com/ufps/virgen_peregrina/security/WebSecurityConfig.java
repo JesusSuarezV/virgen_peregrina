@@ -53,7 +53,7 @@ public class WebSecurityConfig {
 
                                 .requestMatchers("/posts/crear", "/posts/guardar", "/posts/{idPost}/editar", "/posts/{idPost}/actualizar", "/posts/{idPost}/eliminar", "replicas/{idReplica}/editar", "replicas/{idReplica}/actualizar", "replicas/{idReplica}/eliminar","replicas/aprobar").hasAnyAuthority("ADMINISTRADOR", "SUPERADMINISTRADOR")
                                 .requestMatchers("/usuarios/**").hasAuthority("SUPERADMINISTRADOR")
-                                .requestMatchers("/", "/registrarse", "/registrar_usuario", "/recuperar/**", "/cambiar/**", "/actualizar/**", "/replicas", "/posts", "/posts/{idPost}").permitAll()
+                                .requestMatchers("/", "/registrarse", "/registrar_usuario", "/recuperar/**", "/cambiar/**", "/actualizar/**", "/replicas", "/posts", "/posts/{idPost}", "/activar/**").permitAll()
                                 .anyRequest().authenticated())
 
                 .formLogin(form -> form
