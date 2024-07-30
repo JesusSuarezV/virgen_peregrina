@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Registro</title>
+</head>
+
+<div id="redNotification" th:if="${param.error}" class="notification red">
+    <span>Error: Este correo electronico ya esta registrado</span>
+    <span class="close" onclick="closeNotification('redNotification')">×</span>
+</div>
+
+
+
+<body class="login-page">
+
+    <div class="titulo">Registro</div>
+    <div class="imagen"></div>
+
+    <form th:action="@{'/registrar_usuario'}" method="POST" enctype="multipart/form-data">
+    <div class="campo">
+        <div class="nombre-campo">Nombre</div>
+
+        <input class="entrada-campo-r" type="text" name="nombre" required>
+    </div>
+
+    <div class="campo2-">
+        <div class="nombre-campo">Apellido</div>
+
+        <input class="entrada-campo-r" type="text" name="apellido" required>
+    </div>
+
+    <div class="campo3">
+        <div class="nombre-campo">Correo Electronico</div>
+
+        <input class="entrada-campo-r" type="email" name="correo" required>
+    </div>
+
+    <div class="campo4">
+        <div class="nombre-campo">Contraseña</div>
+
+        <input class="entrada-campo-r" type="password" name="clave" required>
+    </div>
+
+    <div class="campo5">
+        <div class="nombre-campo">Telefono Celular</div>
+
+        <input class="entrada-campo-r" type="number" name="celular" step="1" pattern="\d*" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required>
+    </div>
+
+
+    <div class="campo6">
+        <div class="nombre-campo">Foto</div>
+        <div class="entrada-imagen"> Seleccionar Imagen
+            <input type="file" id="fileInput" style="display: none;" name="imagen" accept="image/*" required>
+
+        </div>
+    </div>
+
+    <div class="campo7">
+        <div class="nombre-campo">¿Eres Peregrino?</div>
+
+        <select class="entrada-campo-r" id=" opciones" name="peregrino">
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+        </select>
+
+    </div>
+
+    <button class="login-r"type="submit">REGISTRARSE</button>
+        </form>
+
+    <div class="link-reg">
+        <div class="op1" onclick="window.location.href='/recuperar';">
+            ¿Olvidaste la Contraseña?
+        </div>
+        <div class="op2" onclick="window.location.href='/iniciar_sesion';">¿Ya tienes Cuenta? Inicia Sesión</div>
+    </div>
+
+    <div class="footer-reg">
+        <div class="logo"></div>
+        <div class="color"></div>
+    </div>
+
+
+
+</body>
+<script th:src="@{/js/file.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</html>

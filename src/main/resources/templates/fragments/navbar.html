@@ -1,0 +1,53 @@
+<nav class="navbar" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div onclick="window.location.href='/';" class="logo">
+    </div>
+    <div class="nav-item replicas">
+        <span>RÉPLICAS</span>
+
+
+        <ul class="nav-subitem" style="display: none;">
+
+            <li onclick="window.location.href='/replicas';"><a href="#">Lista de Replicas</a></li>
+            <li onclick="window.location.href='/replicas/mis_replicas';"><a href="#">Replicas Donadas</a></li>
+            <li sec:authorize="hasAnyAuthority('SUPERADMINISTRADOR', 'ADMINISTRADOR')" onclick="window.location.href='/replicas/aprobar';"><a href="#">Aprobar Replicas</a></li>
+            <li onclick="window.location.href='/replicas/donar';"><a href="#">Donar Replica</a></li>
+        </ul>
+
+    </div>
+    <div class="nav-item peregrinaciones">
+        <span>PEREGRINACIONES</span>
+        <ul class="nav-subitem" style="display: none;">
+
+            <li><a href="#">Lista de Peregrinaciones</a></li>
+            <li><a href="#">Mis Peregrinaciones</a></li>
+            <li><a href="#">Crear Peregrinación</a></li>
+        </ul>
+    </div>
+    <div class="nav-item noticias">
+        <span>NOTICIAS</span>
+        <ul class="nav-subitem" style="display: none;">
+            <li onclick="window.location.href='/posts';"><a href="#">Ultimas Noticias</a></li>
+            <li sec:authorize="hasAnyAuthority('SUPERADMINISTRADOR', 'ADMINISTRADOR')" onclick="window.location.href='/posts/crear';"><a href="#">Crear Noticia</a></li>
+        </ul>
+    </div>
+    <div class="nav-item testimonios">
+        <span>TESTIMONIOS</span>
+    </div>
+    <div class="nav-item login-container">
+    </div>
+
+    <div sec:authorize="isAuthenticated()" class="nav-item iniciar-sesion">
+        <span>MI PERFIL </span>
+        <ul class="nav-subitem" style="display: none;">
+
+            <li class="perfil" onclick="window.location.href='/perfil';"><a>Moficar mis Datos</a></li>
+            <li class="perfil" sec:authorize="hasAuthority('SUPERADMINISTRADOR')" onclick="window.location.href='/usuarios';"><a>Gestión de Usuarios</a></li>
+            <li class="logout" onclick="window.location.href='/cerrar_sesion';"><a>Cerrar Sesión</a></li>
+        </ul>
+    </div>
+
+    <div sec:authorize="isAnonymous()" class="nav-item iniciar-sesion" onclick="window.location.href='/iniciar_sesion';">
+        <span>INICIAR SESIÓN </span>
+    </div>
+
+</nav>

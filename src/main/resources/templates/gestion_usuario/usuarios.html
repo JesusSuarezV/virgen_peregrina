@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Usuarios</title>
+</head>
+
+<div id="redNotification" th:if="${param.error}" class="notification red">
+    <span>Error</span>
+    <span class="close" onclick="closeNotification('redNotification')">×</span>
+</div>
+
+<div id="orangeNotification" th:if="${param.exitoBloquear}" class="notification orange">
+    <span>Se ha Eliminado al Usuario</span>
+    <span class="close" onclick="closeNotification('orangeNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.exitoRol}" class="notification green">
+    <span>Se ha Actualizado el Rol del Usuario</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<body class="usuarios">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+<div class="titulo-form">Listado de Usuarios</div>
+
+<div th:each="usuario, iterStat : ${usuarios}">
+
+    <div th:class="'contenedor' + ${iterStat.index + 1}">
+        <div class="foto-container"><img th:src="@{'data:image/png;base64,' + ${usuario.imagenBase64}}"alt=""></div>
+        <div class="nombre-container1">Nombre</div>
+        <div class="campo-container1" th:text="@{${usuario.nombre} + ' ' + ${usuario.apellido}}"></div>
+        <div class="nombre-container2">Correo</div>
+        <div class="campo-container2" th:text="${usuario.correo}"></div>
+        <div class="nombre-container3">Rol</div>
+        <div class="campo-container3" th:text="${usuario.rol.nombre}"></div>
+        <form th:action="@{'/usuarios/' + ${usuario.id} + '/editar_rol'}" method="get">
+        <button class="b-botton1">EDITAR</button>
+        </form>
+        <form th:action="@{'/usuarios/' + ${usuario.id} + '/eliminar'}" method="post">
+        <button class="b-botton2" type="submit" onclick="return confirmarOcultar();">ELIMINAR</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="pag-container">
+
+    <ul class="paginacion" th:if="${usuarios.totalElements > 0}">
+        <li th:if="${usuarios.hasPrevious()}">
+            <a th:href="@{${'/usuarios'}(page=1)}"><<</a>
+        </li>
+        <li th:if="${usuarios.hasPrevious()}">
+            <a th:href="@{${'/usuarios'}(page=${usuarios.number})}"><</a>
+        </li>
+        <li th:each="pageNumber : ${#numbers.sequence(1, usuarios.totalPages)}">
+            <a th:if="${pageNumber > usuarios.number - 3 && pageNumber < usuarios.number + 5}"
+               th:href="@{${'/usuarios'}(page=${pageNumber})}"
+               th:classappend="${pageNumber - 1 == usuarios.number ? 'active' : ''}" th:text="${pageNumber}">
+            </a>
+        </li>
+        <li th:if="${usuarios.hasNext()}">
+            <a th:href="@{${'/usuarios'}(page=${usuarios.number + 2})}">></a>
+        </li>
+        <li th:if="${usuarios.hasNext()}">
+            <a th:href="@{${'/usuarios'}(page=${usuarios.totalPages})}">>></a>
+        </li>
+    </ul>
+
+</div>
+<div class="footer">
+    <div class="superior">
+        <div class="logo"></div>
+        <div class="fondo-azul"></div>
+    </div>
+    <div class="inferior"></div>
+</div>
+
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+
+</html>

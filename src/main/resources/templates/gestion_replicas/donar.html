@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Donar Replica</title>
+</head>
+
+<body class="donar">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+    <div class="titulo-form">Donar Replica</div>
+<form th:action="@{'/replicas/guardar'}" method="POST" enctype="multipart/form-data">
+    <div class="foto-perfil"> </div>
+    <div class="campo-donar">
+        <div class="nombre-perfil">Nombre</div>
+
+        <input class="entrada-perfil" type="text" name="nombre" required>
+    </div>
+    <div class="campo-donar2">
+        <div class="nombre-perfil" >Foto</div>
+
+        <div class="entrada-imagen"> Seleccionar Imagen
+            <input type="file" id="fileInput" style="display: none;" name="imagen" required>
+        </div>
+    </div>
+    <div class="campo-donar3">
+        <div class="nombre-perfil">¿Necesita Restauración?</div>
+
+        <select class="entrada-campo" id=" opciones" name="restauracion" required>
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <button class="guardar-d" type="submit">GUARDAR</button>
+</form>
+    <div class="footer">
+        <div class="superior">
+            <div class="logo"></div>
+            <div class="fondo-azul"></div>
+        </div>
+        <div class="inferior"></div>
+    </div>
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/file.js}"></script>
+
+</html>

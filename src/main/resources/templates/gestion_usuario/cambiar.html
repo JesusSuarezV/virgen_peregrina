@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Cambiar Contraseña</title>
+</head>
+
+<body class="login-page">
+    <div class="titulo">CAMBIAR CONTRASEÑA</div>
+    <div class="imagen"></div>
+
+    <form th:action="@{'/actualizar/' + ${codigo}}" method="POST">
+    <div class="campo">
+        <div class="nombre-campo">Nueva Contraseña</div>
+
+        <input class="entrada-campo" type="password" name="clave" required>
+    </div>
+
+
+    <button class="login-b" type="submit">CAMBIAR</button>
+    </form>
+
+    <div class="link-login">
+        <div class="op1" onclick="window.location.href='/iniciar_sesion';">¿Ya tienes Cuenta? Inicia Sesión</div>
+        <div class="op2"onclick="window.location.href='/registrarse';">¿No tienes cuenta? Registrate</div>
+    </div>
+
+    <div class="footer-login">
+        <div class="logo"></div>
+        <div class="color"></div>
+    </div>
+
+    </div>
+    </div>
+
+</body>

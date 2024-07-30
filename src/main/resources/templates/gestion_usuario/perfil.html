@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .foto-perfil {
+
+            box-sizing: border-box;
+            position: absolute;
+            width: 275px;
+            height: 280px;
+            left: 817px;
+            top: 336px;
+
+            background-size: cover;
+            border-radius: 420px;
+        }
+    </style>
+    <title>Perfil</title>
+</head>
+
+<body class="perfil">
+
+<div id="greenNotification" th:if="${param.exito}" class="notification green">
+    <span>Se ha actualizado el perfil exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="redNotification" th:if="${param.errorImagen}" class="notification red">
+    <span>Error: Ha ocurrido un error con la imagen</span>
+    <span class="close" onclick="closeNotification('redNotification')">×</span>
+</div>
+
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+<div class="titulo-form">Modificar Mis Datos</div>
+<div class="foto-perfil" th:style="'background-image: url(data:image/png;base64,' + ${usuario.imagenBase64}"></div>
+<form th:action="@{/perfil/actualizar}" method="post" enctype="multipart/form-data">
+    <div class="campo-perfil">
+        <div class="nombre-perfil">Nombre</div>
+
+        <input class="entrada-perfil" type="text" th:value="${usuario.nombre}" name="nombre" required>
+    </div>
+    <div class="campo-perfil2">
+        <div class="nombre-perfil">Apellido</div>
+
+        <input class="entrada-perfil" type="text" th:value="${usuario.apellido}" name="apellido" required>
+    </div>
+    <div class="campo-perfil3">
+        <div class="nombre-perfil">Telefono Celular</div>
+
+        <input class="entrada-perfil" type="number" th:value="${usuario.celular}" name="celular" required>
+    </div>
+    <div class="campo-perfil4">
+        <div class="nombre-perfil">Foto</div>
+
+        <div class="entrada-imagen"> Seleccionar Imagen
+            <input type="file" id="fileInput" style="display: none;" name="imagen">
+        </div>
+    </div>
+    <div class="campo-perfil5">
+        <div class="nombre-perfil">¿Eres Peregrino?</div>
+
+        <select class="entrada-campo" id=" opciones" name="peregrino">
+            <option value="true" th:selected="${usuario.peregrino}">Sí</option>
+            <option value="false" th:selected="${!usuario.peregrino}">No</option>
+        </select>
+    </div>
+    <button class="guardar-p" type="submit">GUARDAR</button>
+</form>
+<div class="footer">
+    <div class="superior">
+        <div class="logo"></div>
+        <div class="fondo-azul"></div>
+    </div>
+    <div class="inferior"></div>
+</div>
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/file.js}"></script>
+
+</html>

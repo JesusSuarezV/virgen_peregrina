@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Replicas</title>
+</head>
+
+<div id="blueNotification" th:if="${param.exitoDonarP}" class="notification blue">
+    <span>Su replica se ha enviado a aprobación, este atento a su correo electronico</span>
+    <span class="close" onclick="closeNotification('blueNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.exitoDonarA}" class="notification green">
+    <span>La replica ha sido añadida exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+<div id="greenNotification" th:if="${param.exitoAprobar}" class="notification green">
+    <span>La replica ha sido aprobada exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.exitoActualizar}" class="notification green">
+    <span>La replica ha sido actualizada exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="orangeNotification" th:if="${param.exitoEliminar}" class="notification orange">
+    <span>Se ha eliminado la replica</span>
+    <span class="close" onclick="closeNotification('orangeNotification')">×</span>
+</div>
+
+<body class="usuarios">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+<div class="titulo-form">Listado de Replicas</div>
+
+<div th:each="replica, iterStat : ${replicas}">
+
+    <div th:class="'contenedor' + ${iterStat.index + 1}">
+        <div class="foto-container"><img th:src="@{'data:image/png;base64,' + ${replica.imagenBase64}}" alt=""></div>
+        <div class="nombre-container1">Nombre</div>
+        <div class="campo-container1" th:text="${replica.nombre}"></div>
+        <div class="nombre-container2">Recepción</div>
+        <div class="campo-container2"
+             th:text="${replica.recepcion != null  ? replica.recepcion : 'No Disponible'}"></div>
+        <div class="nombre-container3">Estado</div>
+        <div class="campo-container3" th:if="${replica.estado == 2}" th:text="'No Entregada'"></div>
+        <div class="campo-container3" th:if="${replica.estado == 3}" th:text="'En Reparacion'"></div>
+        <div class="campo-container3" th:if="${replica.estado == 4}" th:text="'Disponible'"></div>
+        <form sec:authorize="hasAnyAuthority('SUPERADMINISTRADOR', 'ADMINISTRADOR')" th:action="@{'/replicas/' + ${replica.id} + '/editar'}" method="get">
+            <button class="b-botton1">EDITAR</button>
+        </form>
+        <form sec:authorize="hasAnyAuthority('SUPERADMINISTRADOR', 'ADMINISTRADOR')" th:action="@{'/replicas/' + ${replica.id} + '/eliminar'}" method="post">
+            <button class="b-botton2" onclick="return confirmarOcultar();">ELIMINAR</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="pag-container">
+
+    <ul class="paginacion" th:if="${replicas.totalElements > 0}">
+        <li th:if="${replicas.hasPrevious()}">
+            <a th:href="@{${'/replicas'}(page=1)}"><<</a>
+        </li>
+        <li th:if="${replicas.hasPrevious()}">
+            <a th:href="@{${'/replicas'}(page=${replicas.number})}"><</a>
+        </li>
+        <li th:each="pageNumber : ${#numbers.sequence(1, replicas.totalPages)}">
+            <a th:if="${pageNumber > replicas.number - 3 && pageNumber < replicas.number + 5}"
+               th:href="@{${'/replicas'}(page=${pageNumber})}"
+               th:classappend="${pageNumber - 1 == replicas.number ? 'active' : ''}" th:text="${pageNumber}">
+            </a>
+        </li>
+        <li th:if="${replicas.hasNext()}">
+            <a th:href="@{${'/replicas'}(page=${replicas.number + 2})}">></a>
+        </li>
+        <li th:if="${replicas.hasNext()}">
+            <a th:href="@{${'/replicas'}(page=${replicas.totalPages})}">>></a>
+        </li>
+    </ul>
+
+</div>
+
+<div class="footer">
+    <div class="superior">
+        <div class="logo"></div>
+        <div class="fondo-azul"></div>
+    </div>
+    <div class="inferior"></div>
+</div>
+
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+
+</html>

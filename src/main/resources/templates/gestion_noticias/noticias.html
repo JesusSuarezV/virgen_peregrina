@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Noticias</title>
+</head>
+
+<div id="greenNotification" th:if="${param.exitoPost}" class="notification green">
+    <span>La noticia se ha agregado correctamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="redNotification" th:if="${param.errorImagen}" class="notification red">
+    <span>Ha ocurrido un error al subir la imagen</span>
+    <span class="close" onclick="closeNotification('redNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.exitoEditar}" class="notification green">
+    <span>La noticia se ha actualizado correctamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="orangeNotification" th:if="${param.exitoEliminar}" class="notification orange">
+    <span>Se ha Eliminado la Noticia</span>
+    <span class="close" onclick="closeNotification('orangeNotification')">×</span>
+</div>
+
+<body class="noticiass">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+<div class="titulo-form">Listado de Noticias</div>
+<div th:each="post, iterStat : ${posts}">
+
+    <div th:class="'n-contenedor' + ${iterStat.index + 1}">
+        <div class="foto-container"><img th:src="@{'data:image/png;base64,' + ${post.imagenBase64}}"alt=""></div>
+        <div class="nombre-container1">Asunto</div>
+        <div class="n-campo-container1" th:text="${post.titulo}"></div>
+        <div class="n-nombre-container2">Publicado</div>
+        <div class="n-campo-container2"th:text="${post.creacion}"></div>
+
+        <button class="p-botton1">VER</button>
+
+        <form th:action="@{'/posts/' + ${post.id}}" method="get">
+            <button class="p-botton1">VER</button>
+        </form>
+
+        <form sec:authorize="hasAnyAuthority('SUPERADMINISTRADOR', 'ADMINISTRADOR')"  th:action="@{'/posts/' + ${post.id} + '/editar'}" method="get">
+            <button class="p-botton2">EDITAR</button>
+        </form>
+
+        <form sec:authorize="hasAnyAuthority('SUPERADMINISTRADOR', 'ADMINISTRADOR')" th:action="@{'/posts/' + ${post.id} + '/eliminar'}" method="post">
+            <button class="p-botton3" onclick="return confirmarOcultar();">ELIMINAR</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="pag-container">
+
+    <ul class="paginacion" th:if="${posts.totalElements > 0}">
+        <li th:if="${posts.hasPrevious()}">
+            <a th:href="@{${'/posts'}(page=1)}"><<</a>
+        </li>
+        <li th:if="${posts.hasPrevious()}">
+            <a th:href="@{${'/posts'}(page=${posts.number})}"><</a>
+        </li>
+        <li th:each="pageNumber : ${#numbers.sequence(1, posts.totalPages)}">
+            <a th:if="${pageNumber > posts.number - 3 && pageNumber < posts.number + 5}"
+               th:href="@{${'/posts'}(page=${pageNumber})}"
+               th:classappend="${pageNumber - 1 == posts.number ? 'active' : ''}" th:text="${pageNumber}">
+            </a>
+        </li>
+        <li th:if="${posts.hasNext()}">
+            <a th:href="@{${'/posts'}(page=${posts.number + 2})}">></a>
+        </li>
+        <li th:if="${posts.hasNext()}">
+            <a th:href="@{${'/posts'}(page=${posts.totalPages})}">>></a>
+        </li>
+    </ul>
+
+</div>
+<div class="footer">
+    <div class="superior">
+        <div class="logo"></div>
+        <div class="fondo-azul"></div>
+    </div>
+    <div class="inferior"></div>
+</div>
+
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .foto-perfil {
+            /* image 17 */
+
+            box-sizing: border-box;
+            position: absolute;
+            width: 275px;
+            height: 280px;
+            left: 817px;
+            top: 336px;
+
+            background: url(/stattic/assets/virgen.jpg );
+            background-size: cover;
+            border-radius: 420px;
+        }
+    </style>
+    <title>Editar Replica</title>
+</head>
+
+<body class="perfil">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+    <div class="titulo-form">Editar Replica</div>
+    <div class="foto-perfil"th:style="'background-image: url(data:image/png;base64,' + ${replica.imagenBase64}"></div>
+<form th:action="@{'/replicas/' + ${replica.id} + '/actualizar'}" method="post" enctype="multipart/form-data">
+    <div class="campo-perfil">
+        <div class="nombre-perfil">Nombre</div>
+
+        <input class="entrada-perfil" type="text" name="nombre" required th:value="${replica.nombre}">
+    </div>
+    <div class="campo-perfil2">
+        <div class="nombre-perfil">Fecha de Recepción</div>
+
+        <div class="entrada-fecha"> Fecha:
+            <input type="date" id="date" name="recepcion" required th:value="${replica.recepcion}">
+        </div>
+    </div>
+    <div class="campo-perfil3">
+        <div class="nombre-perfil">Foto</div>
+
+        <div class="entrada-imagen"> Seleccionar Imagen
+            <input type="file" id="fileInput" style="display: none;" name="imagen">
+        </div>
+    </div>
+    <div class="campo-perfil4">
+        <div class="nombre-perfil">Estado</div>
+
+        <select class="entrada-campo" id=" opciones" name="estado">
+
+
+            <option value="2" th:selected="${replica.estado==2}">ESPERANDO ENTREGA</option>
+            <option value="3" th:selected="${replica.estado==3}">REPARACION</option>
+            <option value="4" th:selected="${replica.estado==4}">DISPONIBLE</option>
+
+        </select>
+    </div>
+    <button class="guardar-p" type="submit">GUARDAR</button>
+</form>
+    <div class="footer">
+        <div class="superior">
+            <div class="logo"></div>
+            <div class="fondo-azul"></div>
+        </div>
+        <div class="inferior"></div>
+    </div>
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/file.js}"></script>
+
+
+</html>

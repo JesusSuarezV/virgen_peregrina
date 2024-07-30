@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Editar Rol</title>
+</head>
+
+<body class="rol">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+<div class="titulo-form">Editar Rol</div>
+<form th:action="@{'/usuarios/' + ${usuario.id} + '/actualizar_rol'}" method="post">
+    <div class="campo-rol">
+        <div class="nombre-perfil">Seleccione el Rol</div>
+
+        <select class="entrada-campo" id=" opciones" name="idRol">
+            <option value="2" th:selected="${usuario.rol.id==2}">Administrador</option>
+            <option value="1" th:selected="${usuario.rol.id==1}">Usuario</option>
+        </select>
+    </div>
+
+    <button class="guardar-r">GUARDAR</button>
+</form>
+<div class="footer">
+    <div class="superior">
+        <div class="logo"></div>
+        <div class="fondo-azul"></div>
+    </div>
+    <div class="inferior"></div>
+</div>
+
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/file.js}"></script>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Noticias</title>
+    <style>
+        .n-fondo {
+
+            position: absolute;
+            left: 0%;
+            right: 0%;
+            top: -140%;
+            bottom: 0%;
+            z-index: -2;
+
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="noticia">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+    <div class="n-encabezado">
+        <div class="n-titulo" th:text="${post.titulo}"></div>
+        <div class="n-fnegro"></div>
+        <div class="n-fondo"th:style="'background-image: url(data:image/png;base64,' + ${post.imagenBase64}"></div>
+    </div>
+    <div class="n-texto" th:text="${post.contenido}"></div>
+    <div class="footer">
+        <div class="superior">
+            <div class="logo"></div>
+            <div class="fondo-azul"></div>
+        </div>
+        <div class="inferior"></div>
+    </div>
+</body>
+<script th:src="@{/js/script.js}"></script>
+</html>

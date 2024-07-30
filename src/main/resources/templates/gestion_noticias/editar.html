@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Editar Noticia</title>
+</head>
+
+<body class="crear">
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+<form th:action="@{'/posts/' + ${post.id} + '/actualizar'}" method="post" enctype="multipart/form-data">
+
+    <div class="titulo-form">Editar Noticia</div>
+    <div class="campo-rol">
+        <div class="nombre-perfil">Titulo</div>
+        <input class="entrada-perfil" type="text" name="titulo" th:value="${post.titulo}" required>
+    </div>
+
+    <div class="n-noticia">
+        <div class="nombre-perfil">Texto</div>
+        <textarea class="entrada-noticia" id="longText" name="contenido" th:text="${post.contenido}" rows="10" cols="50"
+                  required
+                  placeholder="Escribe aquí..."></textarea>
+
+    </div>
+
+    <div class="n-foto">
+        <div class="nombre-perfil">Foto</div>
+
+        <div class="entrada-imagen"> Seleccionar Imagen
+            <input type="file" id="fileInput" style="display: none;" name="imagen">
+        </div>
+    </div>
+
+    <button class="guardar-n" type="submit">GUARDAR</button>
+</form>
+    <div class="footer">
+        <div class="superior">
+            <div class="logo"></div>
+            <div class="fondo-azul"></div>
+        </div>
+        <div class="inferior"></div>
+    </div>
+
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/file.js}"></script>
+
+</html>

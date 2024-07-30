@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>Inicio</title>
+</head>
+
+<div id="blueNotification" th:if="${param.exitoRegistro}" class="notification blue">
+    <span>Se ha enviado un enlace de activación al correo electronico</span>
+    <span class="close" onclick="closeNotification('blueNotification')">×</span>
+</div>
+
+<div id="blueNotification" th:if="${param.exitoRestablecer}" class="notification blue">
+    <span>Se ha enviado un enlace para cambiar su contraseña al correo electronico</span>
+    <span class="close" onclick="closeNotification('blueNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.exitoCambio}" class="notification green">
+    <span>Su contraseña se ha actualizado exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.exitoActivacion}" class="notification green">
+    <span>Su cuenta se ha activado exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.exitoLogin}" class="notification green">
+    <span>Ha iniciado sesión exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="greenNotification" th:if="${param.logout}" class="notification green">
+    <span>Ha cerrado sesión exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+<div id="redNotification" th:if="${param.errorToken}" class="notification red">
+    <span>Error: Token invalido</span>
+    <span class="close" onclick="closeNotification('redNotification')">×</span>
+</div>
+
+<body>
+<div class="header" th:insert="~{fragments/navbar.html}"></div>
+
+<div class="texto-presentacion">
+    <div class="texto">
+
+        <div class="titulo">
+            Organización Religiosa Virgen Peregrina
+        </div>
+
+        <div class="enunciado">
+            Centrada en la Promocion y Difucion de fe
+        </div>
+        <div class="fondo-negro"></div>
+    </div>
+
+    <div class="fondo"></div>
+</div>
+
+<div class="historia">
+
+    <div class="titulo">Historia</div>
+    <div class="texto">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        Pellentesque felis tortor, pretium fringilla tincidunt eget, accumsan ut nisi. Phasellus posuere ipsum vitae
+        sagittis elementum. Etiam et sem turpis. Integer mollis felis at tortor condimentum consectetur. Aenean ac
+        pulvinar magna. Donec eu arcu id mi eleifend facilisis quis vitae elit. Aliquam malesuada massa id
+        ullamcorper auctor.
+    </div>
+
+    <div class="imagen"></div>
+
+</div>
+
+<div class="mision">
+
+    <div class="titulo">Misión</div>
+    <div class="texto">Etiam ullamcorper velit a sapien eleifend finibus. Pellentesque ultricies convallis orci, ut
+        porttitor ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        Aliquam ut lacinia diam, in egestas arcu. Quisque ac purus nec nunc viverra convallis. Ut ante ipsum,
+        feugiat sit amet dapibus at, ornare ac mauris. Quisque vulputate vitae mi eget porta. Mauris pulvinar mauris
+        id velit semper luctus.
+    </div>
+
+    <div class="fondo-azul"></div>
+
+</div>
+
+<div class="vision">
+
+    <div class="titulo">Visión</div>
+    <div class="texto">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        Pellentesque felis tortor, pretium fringilla tincidunt eget, accumsan ut nisi. Phasellus posuere ipsum vitae
+        sagittis elementum. Etiam et sem turpis. Integer mollis felis at tortor condimentum consectetur. Aenean ac
+        pulvinar magna. Donec eu arcu id mi eleifend facilisis quis vitae elit. Aliquam malesuada massa id
+        ullamcorper auctor.
+    </div>
+
+    <div class="imagen"></div>
+
+</div>
+
+<div class="footer">
+    <div class="superior">
+        <div class="logo"></div>
+        <div class="fondo-azul"></div>
+    </div>
+    <div class="inferior"></div>
+</div>
+
+</body>
+<script th:src="@{/js/script.js}"></script>
+
+</html>
