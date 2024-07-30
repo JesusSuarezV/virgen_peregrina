@@ -29,7 +29,7 @@
             <form th:action="@{'/replicas/aprobar/' + ${replica.id}}" method="post">
                 <button class="b-botton3">APROBAR</button>
             </form>
-            <form th:action="@{'/replicas/aprobar/' + ${replica.id} + '/eliminar}" method="post">
+            <form th:action="@{'/replicas/aprobar/' + ${replica.id} + '/eliminar'}" method="post">
                 <button class="b-botton2" onclick="return confirmarOcultar();">ELIMINAR</button>
             </form>
         </div>
