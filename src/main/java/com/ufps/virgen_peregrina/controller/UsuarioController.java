@@ -93,9 +93,12 @@ public class UsuarioController {
             token.setEstado(0);
             tokenService.guardarToken(token);
             usuarioService.actualizarUsuario(usuario);
+            System.out.println("verificacion1");
             return "redirect:/?exitoActivacion";
 
-        } else return "redirect:/?errorToken";
+        } else {
+            return "redirect:/?errorToken";
+        }
     }
 
 
@@ -108,7 +111,6 @@ public class UsuarioController {
     @PostMapping("/perfil/actualizar")
     public String actualizarPerfil(@RequestParam("nombre") String nombre, @RequestParam("apellido") String apellido, @RequestParam("celular") long celular, @RequestParam("imagen") MultipartFile imagen, @RequestParam("peregrino") boolean peregrino) throws IOException {
         try {
-
 
 
             Usuario usuario = usuarioService.obtenerUsuarioPorCorreo(sesionService.getUsernameFromSession());
@@ -202,8 +204,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/usuarios/{idUsuario}/actualizar_rol")
-    public String actualizarRol(@PathVariable int idUsuario,@RequestParam("idRol") int idRol) {
-        if(idRol==3) return "redirect:/usuarios?error";
+    public String actualizarRol(@PathVariable int idUsuario, @RequestParam("idRol") int idRol) {
+        if (idRol == 3) return "redirect:/usuarios?error";
         Usuario usuario = usuarioService.obtenerUsuarioPorId(idUsuario);
         usuario.setRol(rolRepository.getReferenceById(idRol));
         usuarioService.actualizarUsuario(usuario);
