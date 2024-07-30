@@ -160,12 +160,12 @@ public class UsuarioController {
         Token token = tokenService.obtenerToken(codigo);
         if (token != null && token.getEstado() == 1 && token.getTipo() == 1) {
             model.addAttribute("codigo", codigo);
-            return "/gestion_usuario/cambiar.html";
+            return "gestion_usuario/cambiar.html";
 
         } else return "redirect:/?errorToken";
     }
 
-    @PostMapping("/actualizar/{codigo}")
+    @PostMapping("/actualizar_clave/{codigo}")
     public String actualizarClave(@PathVariable String codigo, @RequestParam("clave") String clave) {
         Token token = tokenService.obtenerToken(codigo);
         usuarioService.cambiarContraseña(token.getUsuario(), clave);
@@ -177,7 +177,7 @@ public class UsuarioController {
     @GetMapping("/usuarios")
     public String verUsuarios(Model model, @RequestParam(defaultValue = "1") int page) {
         model.addAttribute("usuarios", usuarioService.obtenerUsuariosParaSuperadmin(PageRequest.of(page - 1, 3)));
-        return "/gestion_usuario/usuarios.html";
+        return "gestion_usuario/usuarios.html";
     }
 
     @PostMapping("/usuarios/{idUsuario}/eliminar")
@@ -198,7 +198,7 @@ public class UsuarioController {
         Usuario usuario = usuarioService.obtenerUsuarioPorId(idUsuario);
         if (usuario != null && usuario.getEstado() != 0) {
             model.addAttribute("usuario", usuarioService.obtenerUsuarioPorId(idUsuario));
-            return "/gestion_usuario/rol.html";
+            return "gestion_usuario/rol.html";
         }
         return "redirect:/usuarios?error";
     }
