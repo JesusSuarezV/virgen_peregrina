@@ -108,7 +108,7 @@ public class UsuarioController {
     @GetMapping("/perfil")
     public String editarUsuario(Model model) {
         model.addAttribute("usuario", usuarioService.obtenerUsuarioPorCorreo(sesionService.getUsernameFromSession()));
-        return "/gestion_usuario/perfil";
+        return "gestion_usuario/perfil";
     }
 
     @PostMapping("/perfil/actualizar")
