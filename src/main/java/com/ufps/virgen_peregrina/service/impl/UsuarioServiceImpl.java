@@ -48,7 +48,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             tokenRepository.save(token);
 
-            String url = "http://localhost:8080/cambiar/" + token.getCodigo();
+            String url = "http://virgenperegrina-production.up.railway.app/cambiar/" + token.getCodigo();
             String cuerpo = "Por favor, restablezca su contraseña en el siguiente enlace: <a href=\"" + url + "\">" + url + "</a>";
 
             mailService.enviarCorreo(usuario.getCorreo(), "RESTABLECER SU CONTRASEÑA DE SU CUENTA VIRGEN PEREGRINA", cuerpo);
@@ -91,8 +91,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             token.setTipo(0);
 
             tokenRepository.save(token);
-
-            String url = "http://localhost:8080/activar/" + token.getCodigo();
+            String url = "http://virgenperegrina-production.up.railway.app/activar/" + token.getCodigo();
             String cuerpo = "Por favor, confirme su cuenta en el siguiente enlace: <a href=\"" + url + "\">" + url + "</a>";
 
             mailService.enviarCorreo(usuario.getCorreo(), "ENLACE DE ACTIVACIÓN DE SU CUENTA VIRGEN PEREGRINA", cuerpo);
