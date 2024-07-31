@@ -42,23 +42,23 @@
     <div class="campo-perfil">
         <div class="nombre-perfil">Nombre</div>
 
-        <input class="entrada-perfil" type="text" th:value="${usuario.nombre}" name="nombre" required>
+        <input class="entrada-perfil" type="text" th:value="${usuario.nombre}" name="nombre" maxlength="255" required>
     </div>
     <div class="campo-perfil2">
         <div class="nombre-perfil">Apellido</div>
 
-        <input class="entrada-perfil" type="text" th:value="${usuario.apellido}" name="apellido" required>
+        <input class="entrada-perfil" type="text" th:value="${usuario.apellido}" name="apellido" maxlength="255" required>
     </div>
     <div class="campo-perfil3">
         <div class="nombre-perfil">Telefono Celular</div>
 
-        <input class="entrada-perfil" type="number" th:value="${usuario.celular}" name="celular" required>
+        <input class="entrada-perfil" type="number" th:value="${usuario.celular}" name="celular" maxlength="255" required>
     </div>
     <div class="campo-perfil4">
         <div class="nombre-perfil">Foto</div>
 
         <div class="entrada-imagen"> Seleccionar Imagen
-            <input type="file" id="fileInput" style="display: none;" name="imagen">
+            <input type="file" id="fileInput" style="display: none;" name="imagen" accept="image/*">
         </div>
     </div>
     <div class="campo-perfil5">

@@ -15,7 +15,7 @@
     <div class="titulo-form">Editar Noticia</div>
     <div class="campo-rol">
         <div class="nombre-perfil">Titulo</div>
-        <input class="entrada-perfil" type="text" name="titulo" th:value="${post.titulo}" required>
+        <input class="entrada-perfil" type="text" name="titulo" th:value="${post.titulo}" maxlength="255" required>
     </div>
 
     <div class="n-noticia">
@@ -30,7 +30,7 @@
         <div class="nombre-perfil">Foto</div>
 
         <div class="entrada-imagen"> Seleccionar Imagen
-            <input type="file" id="fileInput" style="display: none;" name="imagen">
+            <input type="file" id="fileInput" style="display: none;" name="imagen" accept="image/*">
         </div>
     </div>
 

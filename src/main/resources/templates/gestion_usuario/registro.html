@@ -24,31 +24,31 @@
     <div class="campo">
         <div class="nombre-campo">Nombre</div>
 
-        <input class="entrada-campo-r" type="text" name="nombre" required>
+        <input class="entrada-campo-r" type="text" name="nombre" maxlength="255" required>
     </div>
 
     <div class="campo2-">
         <div class="nombre-campo">Apellido</div>
 
-        <input class="entrada-campo-r" type="text" name="apellido" required>
+        <input class="entrada-campo-r" type="text" name="apellido" maxlength="255" required>
     </div>
 
     <div class="campo3">
         <div class="nombre-campo">Correo Electronico</div>
 
-        <input class="entrada-campo-r" type="email" name="correo" required>
+        <input class="entrada-campo-r" type="email" name="correo" maxlength="255" required>
     </div>
 
     <div class="campo4">
         <div class="nombre-campo">Contraseña</div>
 
-        <input class="entrada-campo-r" type="password" name="clave" required>
+        <input class="entrada-campo-r" type="password" name="clave" maxlength="255" required>
     </div>
 
     <div class="campo5">
         <div class="nombre-campo">Telefono Celular</div>
 
-        <input class="entrada-campo-r" type="number" name="celular" step="1" pattern="\d*" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required>
+        <input class="entrada-campo-r" type="number" name="celular" step="1" pattern="\d*" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="255" required>
     </div>
 
 
@@ -63,7 +63,7 @@
     <div class="campo7">
         <div class="nombre-campo">¿Eres Peregrino?</div>
 
-        <select class="entrada-campo-r" id=" opciones" name="peregrino">
+        <select class="entrada-campo-r" id=" opciones" name="peregrino" required>
             <option value="true">Sí</option>
             <option value="false">No</option>
         </select>

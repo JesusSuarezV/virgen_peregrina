@@ -33,7 +33,7 @@
     <div class="campo-perfil">
         <div class="nombre-perfil">Nombre</div>
 
-        <input class="entrada-perfil" type="text" name="nombre" required th:value="${replica.nombre}">
+        <input class="entrada-perfil" type="text" name="nombre" maxlength="255" required th:value="${replica.nombre}">
     </div>
     <div class="campo-perfil2">
         <div class="nombre-perfil">Fecha de Recepción</div>
@@ -46,7 +46,7 @@
         <div class="nombre-perfil">Foto</div>
 
         <div class="entrada-imagen"> Seleccionar Imagen
-            <input type="file" id="fileInput" style="display: none;" name="imagen">
+            <input type="file" id="fileInput" style="display: none;" name="imagen" accept="image/*">
         </div>
     </div>
     <div class="campo-perfil4">
